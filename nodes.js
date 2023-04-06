@@ -1,19 +1,23 @@
 class Node {
   constructor(data) {
-    this.data = data;
-    this.next = null;
+    #data = data;
+    #next = null;
+  }
+  
+  getData() {
+    return this.#data
   }
 
   setNextNode(node) {
     if (node instanceof Node || node === null) {
-      this.next = node;
+      this.#next = node;
     } else {
-      throw new Error('Next node must be a member of the Node class.');
+      throw new Error('Next node must be an instance of the Node class.');
     }
   }
 
   getNextNode() {
-    return this.next;
+    return this.#next;
   }
 }
 
