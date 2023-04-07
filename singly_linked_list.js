@@ -117,6 +117,22 @@ class LinkedList {
     node1.setNextNode(node2.getNextNode());
     node2.setNextNode(temp);
   }
+  
+  nthLastNode(n) {
+    tailPointer = this.#head
+    nthLastNodePointer = null
+    let count = 0
+
+    while (tailPointer) {
+      tailPointer = tailPointer.getNextNode()
+      if (count >= n) {
+        nthLastNodePointer === null ? nthLastNodePointer = this.#head.getNextNode() : nthLastNodePointer = nthLastNodePointer.getNextNode()
+      }
+      count++
+    }
+
+    return nthLastNodePointer
+  };
 }
 
 const seasons = new LinkedList();
