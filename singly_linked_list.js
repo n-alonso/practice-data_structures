@@ -149,6 +149,36 @@ class LinkedList {
 
     return nthLastNodePointer;
   };
+  
+  findMiddle () {
+    let fastPointer = this.#head;
+    let slowPointer = this.#head;
+    
+    while (fastPointer) {
+      fastPointer = fastPointer.getNextNode();
+      if (fastPointer) {
+        fastPointer = fastPointer.getNextNode();
+        slowPointer = slowPointer.getNextNode();
+      }
+    }
+    
+    return slowPointer;
+  }
+  
+  reverse() {
+    let prevNode = null;
+    let currentNode = this.head;
+    let nextNode = null;
+
+    while (currentNode !== null) {
+      nextNode = currentNode.getNextNode(); 
+      currentNode.setNextNode(prevNode); 
+      prevNode = currentNode; 
+      currentNode = nextNode; 
+    }
+
+    this.head = prevNode;
+  }
 }
 
 const seasons = new LinkedList();
