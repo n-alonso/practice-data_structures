@@ -36,23 +36,39 @@ class LinkedList {
     this.#length--;
   }
   
+  removeTail() {
+    if (!this.#head) return;
+    if (!this.#head.getNextNode()) {
+      this.#head.setNextNode(null);
+      this.#head = null;
+    }
+    
+    let currentNode = this.#head;
+    while (currentNode.getNextNode().getNextNode()) {
+      currentNode = currentNode.getNextNode();
+    }
+    currentNode.setNextNode(null);
+    
+    this.#length--;
+  }
+  
   removeNode(data) {
     if (!this.#head) return;
-    let node = this.#head
-    let previousNode = null
+    let node = this.#head;
+    let previousNode = null;
 
     while (node !== null) {
-        if (node.getData() === data) break
-        previousNode = node
-        node = node.getNextNode()
+        if (node.getData() === data) break;
+        previousNode = node;
+        node = node.getNextNode();
     }
 
     if (previousNode === null) {
-        this.#head = node.getNextNode()
-        node.setNextNode(null)
+        this.#head = node.getNextNode();
+        node.setNextNode(null);
     } else {
-        previousNode.setNextNode(node.getNextNode())
-        node.setNextNode(null)
+        previousNode.setNextNode(node.getNextNode());
+        node.setNextNode(null);
     }
     
     this.#length--;
@@ -119,19 +135,19 @@ class LinkedList {
   }
   
   nthLastNode(n) {
-    tailPointer = this.#head
-    nthLastNodePointer = null
-    let count = 0
+    tailPointer = this.#head;
+    nthLastNodePointer = null;
+    let count = 0;
 
     while (tailPointer) {
-      tailPointer = tailPointer.getNextNode()
+      tailPointer = tailPointer.getNextNode();
       if (count >= n) {
-        nthLastNodePointer === null ? nthLastNodePointer = this.#head.getNextNode() : nthLastNodePointer = nthLastNodePointer.getNextNode()
+        nthLastNodePointer === null ? nthLastNodePointer = this.#head.getNextNode() : nthLastNodePointer = nthLastNodePointer.getNextNode();
       }
-      count++
+      count++;
     }
 
-    return nthLastNodePointer
+    return nthLastNodePointer;
   };
 }
 
