@@ -31,6 +31,10 @@ class DoublyLinkedNode {
     this.#previous = null
   }
   
+  getData() {
+    return this.#data
+  }
+  
   getNextNode() {
     return this.#next
   }
