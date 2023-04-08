@@ -204,71 +204,71 @@ seasons.printList();
 
 class DoublyLinkedList {
   constructor() {
-    this.head = null;
-    this.tail = null;
+    this.#head = null;
+    this.#tail = null;
   }
 
   addToHead(data) {
     const newHead = new Node(data);
-    const currentHead = this.head;
+    const currentHead = this.#head;
     if (currentHead) {
       currentHead.setPreviousNode(newHead);
       newHead.setNextNode(currentHead);
     }
-    this.head = newHead;
-    if (!this.tail) {
-      this.tail = newHead;
+    this.#head = newHead;
+    if (!this.#tail) {
+      this.#tail = newHead;
     }
   }
 
   addToTail(data) {
     const newTail = new Node(data);
-    const currentTail = this.tail;
+    const currentTail = this.#tail;
     if (currentTail) {
       currentTail.setNextNode(newTail);
       newTail.setPreviousNode(currentTail);
     }
-    this.tail = newTail;
-    if (!this.head) {
-      this.head = newTail;
+    this.#tail = newTail;
+    if (!this.#head) {
+      this.#head = newTail;
     }
   }
 
   removeHead() {
-    const removedHead = this.head;
+    const removedHead = this.#head;
     if (!removedHead) {
       return;
     }
-    this.head = removedHead.getNextNode();
-    if (this.head) {
-      this.head.setPreviousNode(null);
+    this.#head = removedHead.getNextNode();
+    if (this.#head) {
+      this.#head.setPreviousNode(null);
     }
-    if (removedHead === this.tail) {
+    if (removedHead === this.#tail) {
       this.removeTail();
     }
-    return removedHead.data;
+    return removedHead.getData();
   }
 
   removeTail() {
-    const removedTail = this.tail;
+    const removedTail = this.#tail;
     if (!removedTail) {
       return;
     }
-    this.tail = removedTail.getPreviousNode();
-    if (this.tail) {
-      this.tail.setNextNode(null);
+    this.#tail = removedTail.getPreviousNode();
+    if (this.#tail) {
+      this.#tail.setNextNode(null);
     }
-    if (removedTail === this.head) {
+    if (removedTail === this.#head) {
       this.removeHead();
     }
-    return removedTail.data;
+    return removedTail.getData();
   }
 
   removeByData(data) {
     let nodeToRemove;
-    let currentNode = this.head;
+    let currentNode = this.#head;
     while (currentNode !== null) {
-      if (currentNode.data === data) {
+      if (currentNode.getData() === data) {
         nodeToRemove = currentNode;
         break;
       }
@@ -277,9 +277,9 @@ class DoublyLinkedList {
     if (!nodeToRemove) {
       return null;
     }
-    if (nodeToRemove === this.head) {
+    if (nodeToRemove === this.#head) {
       this.removeHead();
-    } else if (nodeToRemove === this.tail) {
+    } else if (nodeToRemove === this.#tail) {
       this.removeTail();
     } else {
       const nextNode = nodeToRemove.getNextNode();
@@ -291,10 +291,10 @@ class DoublyLinkedList {
   }
 
   printList() {
-    let currentNode = this.head;
+    let currentNode = this.#head;
     let output = '<head> ';
     while (currentNode !== null) {
-      output += currentNode.data + ' ';
+      output += currentNode.getData() + ' ';
       currentNode = currentNode.getNextNode();
     }
     output += '<tail>';
