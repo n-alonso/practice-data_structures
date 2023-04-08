@@ -56,6 +56,9 @@ class DoublyLinkedNode {
   }
 }
 
+
+// PRACTICE USAGE
+
 const strawberryNode = new Node('Berry Tasty')
 const vanillaNode = new Node('Vanilla')
 const coconutNode = new Node('Coconuts for Coconut')
